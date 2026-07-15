@@ -15,7 +15,7 @@
             background-color: #f3f7f9;
         }
         .serif-title {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Montserrat', serif;
         }
         .signature-font {
             font-family: 'Great Vibes', cursive;
@@ -88,23 +88,23 @@
                 <div class="grid grid-cols-1 gap-2.5">
                     <button onclick="switchTemplate('trainee')" id="btn-trainee" class="template-btn w-full text-left p-3.5 rounded-xl border-2 border-[#003C55] bg-sky-50/50 transition-all">
                         <div class="font-bold text-[#003C55] text-sm flex items-center">
-                            <span class="mr-2 text-base">🏆</span> Mẫu 1: Trainee Xuất Sắc
+                            <span class="mr-2 text-base">🏆</span> Ver 1: Outstanding Trainee
                         </div>
-                        <p class="text-xs text-slate-500 mt-1">Dành cho Trainee có thành tích học tập và rèn luyện vượt bậc.</p>
+                        <p class="text-xs text-slate-500 mt-1">To award the Trainees who has excellent performance.</p>
                     </button>
                     
                     <button onclick="switchTemplate('hierarchy')" id="btn-hierarchy" class="template-btn w-full text-left p-3.5 rounded-xl border-2 border-transparent hover:border-slate-300 bg-slate-50 transition-all">
                         <div class="font-bold text-slate-700 text-sm flex items-center">
-                            <span class="mr-2 text-base">⚡</span> Mẫu 2: Overhead / Hierarchy
+                            <span class="mr-2 text-base">⚡</span> Ver 2: Overhead / Hierarchy
                         </div>
-                        <p class="text-xs text-slate-500 mt-1">Dành cho Leader, QA, Trainer đồng hành huấn luyện xuất sắc.</p>
+                        <p class="text-xs text-slate-500 mt-1">For Leader, QA, Trainer who demonstrates outstanding performance in training.</p>
                     </button>
 
                     <button onclick="switchTemplate('honor')" id="btn-honor" class="template-btn w-full text-left p-3.5 rounded-xl border-2 border-transparent hover:border-slate-300 bg-slate-50 transition-all">
                         <div class="font-bold text-slate-700 text-sm flex items-center">
-                            <span class="mr-2 text-base">🎖️</span> Mẫu 3: Honor Roll Recognition
+                            <span class="mr-2 text-base">🎖️</span> Ver 3: Honor Roll Recognition
                         </div>
-                        <p class="text-xs text-slate-500 mt-1">Vinh danh các Hierarchy khác đóng góp tích cực và tận tâm.</p>
+                        <p class="text-xs text-slate-500 mt-1">Honor the Hierarchy who contributes to the success of training. </p>
                     </button>
                 </div>
             </div>
@@ -113,26 +113,26 @@
 
             <!-- Form Edit -->
             <div>
-                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">2. Thông tin học viên</h2>
+                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">2. Trainee Information</h2>
                 <div class="space-y-4">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Tên Người Nhận (Full Name)</label>
-                        <input type="text" id="input-name" oninput="updatePreview()" value="NGUYỄN MINH KHANG" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-[#00C1B4] focus:outline-none font-semibold">
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Receiver (Full Name)</label>
+                        <input type="text" id="input-name" oninput="updatePreview()" value="DANG LE THANH THUY" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-[#00C1B4] focus:outline-none font-semibold">
                     </div>
 
                     <div class="grid grid-cols-2 gap-2">
                         <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">Thời gian từ ngày</label>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Training Start Date</label>
                             <input type="text" id="input-date-from" oninput="updatePreview()" value="01/06/2026" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-[#00C1B4] focus:outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">Đến ngày</label>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Training End Date</label>
                             <input type="text" id="input-date-to" oninput="updatePreview()" value="30/06/2026" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-[#00C1B4] focus:outline-none">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 mb-1">Ngày ký phát bằng</label>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Certificate Issued Date</label>
                         <input type="text" id="input-issue-date" oninput="updatePreview()" value="July 16, 2026" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-[#00C1B4] focus:outline-none">
                     </div>
                 </div>
@@ -143,14 +143,14 @@
             <!-- Signatures Configuration with Hand-Signing options -->
             <div>
                 <div class="flex items-center justify-between mb-3">
-                    <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">3. Cấu hình chữ ký Ban Giám Đốc</h2>
+                    <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">3. Setup Signature</h2>
                 </div>
 
                 <!-- Hand-sign Toggle Option -->
                 <div class="mb-4 p-3 bg-teal-50/60 rounded-xl border border-teal-100 flex items-center justify-between">
                     <div>
-                        <span class="block text-xs font-bold text-[#003C55]">Chừa trống ký sống (Real ink)</span>
-                        <span class="block text-[10px] text-slate-500">Ẩn chữ ký số để sếp ký tay trực tiếp lên bản in giấy</span>
+                        <span class="block text-xs font-bold text-[#003C55]">Blank Signature (Real sign)</span>
+                        <span class="block text-[10px] text-slate-500">Hide electric signature</span>
                     </div>
                     <label class="relative inline-flex items-center cursor-pointer">
                         <input type="checkbox" id="toggle-real-sign" onchange="toggleRealSign()" class="sr-only peer" checked>
@@ -161,18 +161,18 @@
                 <div class="space-y-4">
                     <!-- Director -->
                     <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-150">
-                        <span class="block text-xs font-bold text-[#003C55] mb-2">Người ký 1 (Director)</span>
+                        <span class="block text-xs font-bold text-[#003C55] mb-2">Author 2</span>
                         <div class="space-y-2">
                             <div>
-                                <label class="block text-[10px] text-slate-500 mb-0.5">Họ và tên sếp</label>
+                                <label class="block text-[10px] text-slate-500 mb-0.5">Author 1 Full Name</label>
                                 <input type="text" id="input-boss1-name" oninput="updatePreview()" value="Tran Minh Quan" class="w-full px-3 py-1.5 border border-slate-200 rounded-md text-xs font-semibold focus:outline-teal-500">
                             </div>
                             <div>
-                                <label class="block text-[10px] text-slate-500 mb-0.5">Chức danh (Title)</label>
+                                <label class="block text-[10px] text-slate-500 mb-0.5">Author 1 Title</label>
                                 <input type="text" id="input-boss1-title" oninput="updatePreview()" value="Director, Operations" class="w-full px-3 py-1.5 border border-slate-200 rounded-md text-xs focus:outline-teal-500">
                             </div>
                             <div class="digital-sign-options hidden">
-                                <label class="block text-[10px] text-slate-500 mb-1">Tải ảnh chữ ký số (PNG trong suốt)</label>
+                                <label class="block text-[10px] text-slate-500 mb-1">Upload electric signature (PNG)</label>
                                 <input type="file" accept="image/*" onchange="uploadSignature(event, 'dir')" class="w-full text-[10px] text-slate-400 file:mr-2 file:py-1 file:px-2 file:rounded-md file:border-0 file:text-[10px] file:font-semibold file:bg-slate-200 file:text-slate-700 hover:file:bg-slate-300">
                             </div>
                         </div>
@@ -180,18 +180,18 @@
 
                     <!-- Assoc Director -->
                     <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-150">
-                        <span class="block text-xs font-bold text-[#003C55] mb-2">Người ký 2 (Associate Director)</span>
+                        <span class="block text-xs font-bold text-[#003C55] mb-2">Author 2</span>
                         <div class="space-y-2">
                             <div>
-                                <label class="block text-[10px] text-slate-500 mb-0.5">Họ và tên sếp</label>
+                                <label class="block text-[10px] text-slate-500 mb-0.5">Author 2 Full Name</label>
                                 <input type="text" id="input-boss2-name" oninput="updatePreview()" value="Sarah Nguyen" class="w-full px-3 py-1.5 border border-slate-200 rounded-md text-xs font-semibold focus:outline-teal-500">
                             </div>
                             <div>
-                                <label class="block text-[10px] text-slate-500 mb-0.5">Chức danh (Title)</label>
+                                <label class="block text-[10px] text-slate-500 mb-0.5">Author 2 Title</label>
                                 <input type="text" id="input-boss2-title" oninput="updatePreview()" value="Associate Director, Training" class="w-full px-3 py-1.5 border border-slate-200 rounded-md text-xs focus:outline-teal-500">
                             </div>
                             <div class="digital-sign-options hidden">
-                                <label class="block text-[10px] text-slate-500 mb-1">Tải ảnh chữ ký số (PNG trong suốt)</label>
+                                <label class="block text-[10px] text-slate-500 mb-1">Upload electric signature (PNG)</label>
                                 <input type="file" accept="image/*" onchange="uploadSignature(event, 'assoc')" class="w-full text-[10px] text-slate-400 file:mr-2 file:py-1 file:px-2 file:rounded-md file:border-0 file:text-[10px] file:font-semibold file:bg-slate-200 file:text-slate-700 hover:file:bg-slate-300">
                             </div>
                         </div>
@@ -245,7 +245,7 @@
                     <div class="relative z-10 flex justify-between items-center">
                         <!-- Left Side: Official Concentrix Logo Attachment -->
                         <div class="flex items-center">
-                            <img src="concentrix-logo-1200x686-1.png" alt="Concentrix Logo" class="h-10 object-contain" onerror="this.src='https://placehold.co/200x60/003C55/00C1B4?text=CONCENTRIX'">
+                            <img src="concentrix-logo-1200x686-1.png" alt="Concentrix Logo" class="h-10 object-contain" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/f/fc/Concentrix_logo.svg'">
                         </div>
                         
                         <!-- Right Side: Certificate Label -->
