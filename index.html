@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concentrix Certificate Generator - Batch 1 Premium Edition</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght=0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f3f7f9;
+        }
+        .signature-font {
+            font-family: 'Great Vibes', cursive;
+        }
+        /* Elegant serif style for boss name option */
+        .font-cormorant {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            font-style: italic;
+        }
+        /* Royal Roman style for boss name option */
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+        }
+        /* Ultra thin modern style for boss name option */
+        .font-montserrat-light {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+        }
+        
+        /* Certificate ratio container standard for print (A4 Landscape) */
+        .certificate-container {
+            width: 1120px;
+            height: 792px;
+            position: relative;
+            box-sizing: border-box;
+            background: #ffffff;
+        }
+        /* Printable area setup */
+        @media print {
+            body {
+                background: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-page {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 297mm;
+                height: 210mm;
+                transform: scale(1);
+                page-break-after: always;
+                box-shadow: none !important;
+                border: none !important;
+            }
+        }
+        @page {
+            size: A4 landscape;
+            margin: 0;
+        }
+
+        /* Concentrix Color Palette Helper Variables */
+        :root {
+            --cnx-navy: #003C55;
+            --cnx-teal: #00C1B4;
+            --cnx-dark: #002230;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col text-slate-800">
+
+    <!-- Header (No Print) -->
+    <header class="no-print bg-[#002230] text-white py-4 px-6 shadow-md flex justify-between items-center border-b border-[#00C1B4]/20">
+        <div class="flex items-center space-x-3">
+            <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-[#00C1B4] to-[#003C55] flex items-center justify-center font-bold text-white shadow-md">C</div>
+            <div>
+                <h1 class="text-sm font-extrabold tracking-widest text-[#00C1B4]">CONCENTRIX</h1>
+                <p class="text-[10px] text-gray-400">Game-changer Certificate Studio (Batch 1 Edition)</p>
+            </div>
+        </div>
+        <div class="hidden sm:flex text-xs bg-slate-900/80 px-4 py-2 rounded-full text-slate-300 border border-[#00C1B4]/30 items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            Thiết kế theo chuẩn nhận diện Concentrix
+        </div>
+    </header>
+
+    <div class="flex-1 flex flex-col lg:flex-row">
+        <!-- Control Panel (No Print) -->
+        <aside class="no-print w-full lg:w-[440px] bg-white border-r border-slate-200 p-6 flex flex-col space-y-6 overflow-y-auto max-h-[calc(100vh-68px)]">
+            <div>
+                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">1. Chọn loại giải thưởng</h2>
+                <div class="grid grid-cols-1 gap-2.5">
+                    <button onclick="switchTemplate('trainee')" id="btn-trainee" class="template-btn w-full text-left p-3.5 rounded-xl border-2 border-[#003C55] bg-sky-50/50 transition-all">
+                        <div class="font-bold text-[#003C55] text-sm flex items-center">
+                            <span class="mr-2 text-base">🏆</span> Mẫu 1: Trainee Xuất Sắc
+                        </div>
+                        <p class="text-xs text-slate-500 mt-1">Dành cho Trainee có thành tích học tập và rèn luyện vượt bậc.</p>
+                    </button>
+                    
+                    <button onclick="switchTemplate('hierarchy')" id="btn-hierarchy" class="template-btn w-full text-left p-3.5 rounded-xl border-2 border-transparent hover:border-slate-300 bg-slate-50 transition-all">
+                        <div class="font-bold text-slate-700 text-sm flex items-center">
+                            <span class="mr-2 text-base">⚡</span> Mẫu 2: Overhead / Hierarchy
+                        </div>
+                        <p class="text-xs text-slate-500 mt-1">Dành cho Leader, QA, Trainer đồng hành huấn luyện xuất sắc.</p>
+                    </button>
+
+                    <button onclick="switchTemplate('honor')" id="btn-honor" class="template-btn w-full text-left p-3.5 rounded-xl border-2 border-transparent hover:border-slate-300 bg-slate-50 transition-all">
+                        <div class="font-bold text-slate-700 text-sm flex items-center">
+                            <span class="mr-2 text-base">🎖️</span> Mẫu 3: Honor Roll Recognition
+                        </div>
+                        <p class="text-xs text-slate-500 mt-1">Vinh danh các Hierarchy khác đóng góp tích cực và tận tâm.</p>
+                    </button>
+                </div>
+            </div>
+
+            <hr class="border-slate-100">
+
+            <!-- Form Edit -->
+            <div>
+                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">2. Thông tin vinh danh</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 mb-1">Tên Người Nhận (Full Name)</label>
+                        <input type="text" id="input-name" oninput="updatePreview()" value="DAO THI HA MY" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-[#00C1B4] focus:outline-none font-semibold uppercase font-sans">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Highlight Khóa học / Group</label>
+                            <input type="text" id="input-batch" oninput="updatePreview()" value="Batch 1" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-[#00C1B4] focus:outline-none font-medium">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Graduation Date (Cố định)</label>
+                            <input type="text" id="input-grad-date" value="24/7/2026" disabled class="w-full px-3 py-2 border border-slate-200 bg-slate-50 rounded-lg text-sm text-slate-500 font-semibold cursor-not-allowed">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-slate-100">
+
+            <!-- Signatures Configuration with Hand-Signing options -->
+            <div>
+                <div class="flex items-center justify-between mb-3">
+                    <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider">3. Cấu hình chữ ký Ban Giám Đốc</h2>
+                </div>
+
+                <!-- Hand-sign Toggle Option -->
+                <div class="mb-4 p-3 bg-teal-50/60 rounded-xl border border-teal-100 flex items-center justify-between">
+                    <div>
+                        <span class="block text-xs font-bold text-[#003C55]">Chừa trống ký sống (Real ink)</span>
+                        <span class="block text-[10px] text-slate-500">Ẩn chữ ký số để sếp ký tay trực tiếp lên bản in giấy</span>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" id="toggle-real-sign" onchange="toggleRealSign()" class="sr-only peer" checked>
+                        <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00C1B4]"></div>
+                    </label>
+                </div>
+
+                <!-- Boss Name Font Selection Dropdown -->
+                <div class="mb-4">
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Kiểu Font chữ Tên Sếp (Premium)</label>
+                    <select id="select-boss-font" onchange="changeBossFont()" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-[#00C1B4] focus:outline-none bg-white font-medium text-slate-700">
+                        <option value="cormorant">Cormorant Garamond (Mảnh mai, Quý phái Ý)</option>
+                        <option value="cinzel">Cinzel (Hoàng gia, Cổ điển, Uy nghiêm)</option>
+                        <option value="montserrat-light">Montserrat Light (Siêu mỏng, Hiện đại tối giản)</option>
+                    </select>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Director -->
+                    <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-150">
+                        <span class="block text-xs font-bold text-[#003C55] mb-2">Người ký 1 (Director)</span>
+                        <div class="space-y-2">
+                            <div>
+                                <label class="block text-[10px] text-slate-500 mb-0.5">Họ và tên sếp</label>
+                                <input type="text" id="input-boss1-name" oninput="updatePreview()" value="PRADEEP KUMAR BAHADURSHA" class="w-full px-3 py-1.5 border border-slate-200 rounded-md text-xs font-semibold focus:outline-teal-500">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] text-slate-500 mb-0.5">Chức danh (Title)</label>
+                                <input type="text" id="input-boss1-title" oninput="updatePreview()" value="Director, Operations" class="w-full px-3 py-1.5 border border-slate-200 rounded-md text-xs focus:outline-teal-500">
+                            </div>
+                            <div class="digital-sign-options hidden">
+                                <label class="block text-[10px] text-slate-500 mb-1">Tải ảnh chữ ký số (PNG trong suốt)</label>
+                                <input type="file" accept="image/*" onchange="uploadSignature(event, 'dir')" class="w-full text-[10px] text-slate-400 file:mr-2 file:py-1 file:px-2 file:rounded-md file:border-0 file:text-[10px] file:font-semibold file:bg-slate-200 file:text-slate-700 hover:file:bg-slate-300">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Assoc Director -->
+                    <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-150">
+                        <span class="block text-xs font-bold text-[#003C55] mb-2">Người ký 2 (Associate Director)</span>
+                        <div class="space-y-2">
+                            <div>
+                                <label class="block text-[10px] text-slate-500 mb-0.5">Họ và tên sếp</label>
+                                <input type="text" id="input-boss2-name" oninput="updatePreview()" value="LIPI SHORI" class="w-full px-3 py-1.5 border border-slate-200 rounded-md text-xs font-semibold focus:outline-teal-500">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] text-slate-500 mb-0.5">Chức danh (Title)</label>
+                                <input type="text" id="input-boss2-title" oninput="updatePreview()" value="Associate Director, Operations Support" class="w-full px-3 py-1.5 border border-slate-200 rounded-md text-xs focus:outline-teal-500">
+                            </div>
+                            <div class="digital-sign-options hidden">
+                                <label class="block text-[10px] text-slate-500 mb-1">Tải ảnh chữ ký số (PNG trong suốt)</label>
+                                <input type="file" accept="image/*" onchange="uploadSignature(event, 'assoc')" class="w-full text-[10px] text-slate-400 file:mr-2 file:py-1 file:px-2 file:rounded-md file:border-0 file:text-[10px] file:font-semibold file:bg-slate-200 file:text-slate-700 hover:file:bg-slate-300">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Print Actions -->
+            <div class="pt-4 mt-auto">
+                <button onclick="window.print()" class="w-full bg-gradient-to-r from-[#003C55] to-[#002230] hover:to-[#003C55] text-white py-3.5 px-4 rounded-xl font-bold flex items-center justify-center space-x-2 transition-all shadow-lg shadow-slate-900/20 hover:shadow-xl hover:-translate-y-0.5">
+                    <span>🖨️</span>
+                    <span>In / Xuất Bằng Khen (PDF)</span>
+                </button>
+                <p class="text-[10px] text-center text-slate-400 mt-2.5">
+                    Mẹo: Chọn khổ <strong>Ngang (Landscape)</strong>, kích thước giấy <strong>A4</strong>, tắt <strong>Headers & Footers</strong> và bật <strong>Background Graphics</strong> khi in.
+                </p>
+            </div>
+        </aside>
+
+        <!-- Preview Area -->
+        <main class="flex-1 bg-slate-100 flex items-center justify-center p-4 lg:p-8 overflow-auto">
+            <div class="scale-50 sm:scale-75 md:scale-[0.8] xl:scale-100 transition-all duration-300">
+                
+                <!-- THE CERTIFICATE FOR PRINT -->
+                <div id="certificate-card" class="certificate-container print-page shadow-2xl rounded-sm overflow-hidden flex flex-col justify-between p-14 border-[16px] border-[#003C55]">
+                    
+                    <!-- Background Design Layout (Concentrix Elegant Waves Branding) -->
+                    <div class="absolute inset-0 pointer-events-none overflow-hidden z-0 bg-slate-50">
+                        <!-- Upper Right Concentrix Wave Art -->
+                        <svg class="absolute -right-20 -top-20 w-[450px] h-[450px] opacity-15 text-[#00C1B4]" viewBox="0 0 100 100" fill="currentColor">
+                            <path d="M0,100 C30,40 70,30 100,0 L100,100 Z" />
+                        </svg>
+                        <svg class="absolute -right-10 -top-10 w-[350px] h-[350px] opacity-10 text-[#003C55]" viewBox="0 0 100 100" fill="currentColor">
+                            <path d="M0,100 C40,50 60,40 100,0 L100,100 Z" />
+                        </svg>
+                        
+                        <!-- Lower Left Concentrix Wave Art -->
+                        <svg class="absolute -left-20 -bottom-20 w-[450px] h-[450px] opacity-15 text-[#003C55]" viewBox="0 0 100 100" fill="currentColor">
+                            <path d="M0,0 C30,70 70,60 100,100 L0,100 Z" />
+                        </svg>
+                        <svg class="absolute -left-10 -bottom-10 w-[350px] h-[350px] opacity-10 text-[#00C1B4]" viewBox="0 0 100 100" fill="currentColor">
+                            <path d="M0,0 C45,55 55,45 100,100 L0,100 Z" />
+                        </svg>
+
+                        <!-- Delicate Inner Border lines in Corporate Style -->
+                        <div class="absolute inset-4 border border-[#00C1B4]/30 rounded-sm"></div>
+                        <div class="absolute inset-5 border-2 border-[#003C55]/10 rounded-sm"></div>
+                    </div>
+
+                    <!-- Header Content -->
+                    <div class="relative z-10 flex justify-between items-center">
+                        <!-- Left Side: Official Concentrix Logo Attachment -->
+                        <div class="flex items-center">
+                            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Concentrix_logo.svg" alt="Concentrix Logo" class="h-10 object-contain" onerror="this.src='concentrix-logo-1200x686-1.png'">
+                        </div>
+                        
+                        <!-- Right Side: Certificate Label -->
+                        <div class="text-right font-sans">
+                            <h3 class="text-[10px] font-bold tracking-[0.3em] text-[#003C55] uppercase">Official Recognition</h3>
+                            <p class="text-[8px] text-[#00C1B4] tracking-[0.15em] font-bold uppercase mt-0.5">Game-Changers At Work</p>
+                        </div>
+                    </div>
+
+                    <!-- Main Core Content -->
+                    <div class="relative z-10 text-center flex-1 flex flex-col justify-center my-4">
+                        <!-- Award Category Label (Dynamic Accent badge) -->
+                        <div class="flex justify-center mb-5">
+                            <span id="cert-badge-text" class="px-5 py-1.5 rounded-full text-xs font-bold tracking-[0.25em] uppercase shadow-sm border"></span>
+                        </div>
+
+                        <!-- Big Title (Styled as #1b1b1b with Montserrat Font for unified, clean brand vibe) -->
+                        <h1 id="cert-title" class="text-3xl font-black tracking-wider mb-2 uppercase" style="color: #1b1b1b; font-family: 'Montserrat', sans-serif;"></h1>
+                        
+                        <!-- Subtitle -->
+                        <p class="text-[10px] tracking-[0.35em] font-semibold text-slate-400 uppercase mb-5">This Honor is Proudly Presented To</p>
+
+                        <!-- Recipient Name -->
+                        <div class="mb-4">
+                            <h2 id="cert-recipient-name" class="text-4xl font-extrabold text-[#003C55] tracking-wide border-b-[3px] border-[#00C1B4] inline-block px-14 pb-2.5 uppercase"></h2>
+                        </div>
+
+                        <!-- Description (Dynamic Text - Increased Font Size as Requested) -->
+                        <div class="max-w-2xl mx-auto mt-3">
+                            <p id="cert-desc" class="text-[16px] text-slate-700 leading-relaxed font-semibold italic"></p>
+                        </div>
+
+                        <!-- Meta Info (Recipient Cohort & Graduation Date - Increased Sizes) -->
+                        <div class="flex justify-center items-center space-x-12 mt-7 text-slate-500 bg-slate-100/60 py-3.5 px-10 rounded-lg w-fit mx-auto border border-slate-200/50">
+                            <div>
+                                <span class="text-slate-400 font-bold uppercase tracking-wider block text-[11px] mb-1">Recipient Cohort</span>
+                                <span id="cert-period-date" class="text-[#003C55] font-extrabold uppercase tracking-wider text-[14px]"></span>
+                            </div>
+                            <div class="h-8 w-px bg-slate-300"></div>
+                            <div>
+                                <span class="text-slate-400 font-bold uppercase tracking-wider block text-[11px] mb-1">Graduation Date</span>
+                                <span id="cert-issue-date" class="text-[#003C55] font-extrabold text-[14px]">24/7/2026</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Signatures Footer -->
+                    <div class="relative z-10 flex justify-between items-end border-t border-slate-200/60 pt-6">
+                        <!-- Left Signature Block (Director) -->
+                        <div class="w-64 text-center">
+                            <div class="h-20 flex items-end justify-center mb-2 relative">
+                                <!-- Signature Dynamic Space -->
+                                <div id="dir-sig-wrapper" class="relative w-full h-full flex items-end justify-center">
+                                    <span id="dir-sig-text" class="signature-font text-3xl text-slate-500/80 select-none absolute bottom-1 transition-all"></span>
+                                    <img id="dir-sig-img" class="max-h-20 max-w-[180px] object-contain hidden" alt="Director Signature">
+                                    <div id="dir-blank-line" class="w-40 border-b border-dashed border-slate-300 absolute bottom-3 hidden"></div>
+                                </div>
+                            </div>
+                            <div class="w-52 mx-auto border-t border-slate-300 my-1"></div>
+                            <h4 id="cert-dir-name" class="text-[16px] font-medium text-[#003C55] tracking-wide transition-all font-cormorant"></h4>
+                            <p id="cert-dir-title" class="text-[11px] text-slate-400 font-semibold uppercase tracking-wider mt-1"></p>
+                        </div>
+
+                        <!-- Center Seal/Quote -->
+                        <div class="text-center pb-1">
+                            <p class="text-[9px] font-extrabold text-[#00C1B4] tracking-[0.25em] uppercase">Concentrix Game-changer</p>
+                            <p class="text-[8px] font-medium text-slate-400 mt-1 uppercase tracking-wider">Challenge Conventions • Deliver Excellence</p>
+                        </div>
+
+                        <!-- Right Signature Block (Assoc Director) -->
+                        <div class="w-64 text-center">
+                            <div class="h-20 flex items-end justify-center mb-2 relative">
+                                <!-- Signature Dynamic Space -->
+                                <div id="assoc-sig-wrapper" class="relative w-full h-full flex items-end justify-center">
+                                    <span id="assoc-sig-text" class="signature-font text-3xl text-slate-500/80 select-none absolute bottom-1 transition-all"></span>
+                                    <img id="assoc-sig-img" class="max-h-20 max-w-[180px] object-contain hidden" alt="Assoc Director Signature">
+                                    <div id="assoc-blank-line" class="w-40 border-b border-dashed border-slate-300 absolute bottom-3 hidden"></div>
+                                </div>
+                            </div>
+                            <div class="w-52 mx-auto border-t border-slate-300 my-1"></div>
+                            <h4 id="cert-assoc-name" class="text-[16px] font-medium text-[#003C55] tracking-wide transition-all font-cormorant"></h4>
+                            <p id="cert-assoc-title" class="text-[11px] text-slate-400 font-semibold uppercase tracking-wider mt-1"></p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Script Operations -->
+    <script>
+        // Preset texts for 3 different templates matching Concentrix colors
+        const templates = {
+            trainee: {
+                badgeText: "Outstanding Trainee",
+                badgeClass: "bg-[#00C1B4]/10 text-[#003C55] border-[#00C1B4]/30",
+                title: "CERTIFICATE OF EXCELLENT PERFORMANCE",
+                desc: "In recognition of your exceptional academic commitment, proactive attitude, and outstanding achievements throughout the training curriculum.",
+            },
+            hierarchy: {
+                badgeText: "Outstanding Overhead",
+                badgeClass: "bg-[#003C55]/10 text-[#003C55] border-[#003C55]/30",
+                title: "LEADERSHIP & TRAINING EXCELLENCE AWARD",
+                desc: "For demonstrating exemplary leadership qualities, outstanding peer mentoring, and active dedication in driving the overall standard of performance throughout the training period.",
+            },
+            honor: {
+                badgeText: "Honor Roll Recognition",
+                badgeClass: "bg-slate-100 text-slate-600 border-slate-300/60",
+                title: "HONOR ROLL OF TRAINING APPRECIATION",
+                desc: "Awarded in sincere appreciation for your active engagement, supportive teamwork, and valuable individual contributions that fostered high spirit and positive impact during the program.",
+            }
+        };
+
+        // Default Active Template
+        let activeTemplate = 'trainee';
+
+        // Switch templates function
+        function switchTemplate(type) {
+            activeTemplate = type;
+            
+            // Highlight Button
+            document.querySelectorAll('.template-btn').forEach(btn => {
+                btn.classList.remove('border-[#003C55]', 'bg-sky-50/50');
+                btn.classList.add('border-transparent', 'bg-slate-50');
+            });
+            
+            const activeBtn = document.getElementById(`btn-${type}`);
+            activeBtn.classList.remove('border-transparent', 'bg-slate-50');
+            activeBtn.classList.add('border-[#003C55]', 'bg-sky-50/50');
+
+            updatePreview();
+        }
+
+        // Change Font Selection of the Boss printed names
+        function changeBossFont() {
+            const fontSelection = document.getElementById('select-boss-font').value;
+            const dirName = document.getElementById('cert-dir-name');
+            const assocName = document.getElementById('cert-assoc-name');
+
+            // Remove existing style classes
+            dirName.classList.remove('font-cormorant', 'font-cinzel', 'font-montserrat-light');
+            assocName.classList.remove('font-cormorant', 'font-cinzel', 'font-montserrat-light');
+
+            // Add selected premium font class
+            if (fontSelection === 'cormorant') {
+                dirName.classList.add('font-cormorant');
+                assocName.classList.add('font-cormorant');
+            } else if (fontSelection === 'cinzel') {
+                dirName.classList.add('font-cinzel');
+                assocName.classList.add('font-cinzel');
+            } else if (fontSelection === 'montserrat-light') {
+                dirName.classList.add('font-montserrat-light');
+                assocName.classList.add('font-montserrat-light');
+            }
+        }
+
+        // Handle Real hand signing vs simulated signature toggle
+        function toggleRealSign() {
+            const isRealSignOnly = document.getElementById('toggle-real-sign').checked;
+            const digitalContainers = document.querySelectorAll('.digital-sign-options');
+            
+            const dirSigText = document.getElementById('dir-sig-text');
+            const assocSigText = document.getElementById('assoc-sig-text');
+            const dirBlank = document.getElementById('dir-blank-line');
+            const assocBlank = document.getElementById('assoc-blank-line');
+            const dirSigImg = document.getElementById('dir-sig-img');
+            const assocSigImg = document.getElementById('assoc-sig-img');
+
+            if (isRealSignOnly) {
+                // Hide digital inputs
+                digitalContainers.forEach(el => el.classList.add('hidden'));
+                
+                // Show clean blanks/placeholders for real hand-sign
+                dirSigText.classList.add('hidden');
+                assocSigText.classList.add('hidden');
+                dirSigImg.classList.add('hidden');
+                assocSigImg.classList.add('hidden');
+                dirBlank.classList.remove('hidden');
+                assocBlank.classList.remove('hidden');
+            } else {
+                // Show digital options
+                digitalContainers.forEach(el => el.classList.remove('hidden'));
+                
+                // Show font simulation or uploaded image
+                dirBlank.classList.add('hidden');
+                assocBlank.classList.add('hidden');
+                
+                if (dirSigImg.getAttribute('src')) {
+                    dirSigImg.classList.remove('hidden');
+                } else {
+                    dirSigText.classList.remove('hidden');
+                }
+
+                if (assocSigImg.getAttribute('src')) {
+                    assocSigImg.classList.remove('hidden');
+                } else {
+                    assocSigText.classList.remove('hidden');
+                }
+            }
+        }
+
+        // Live Update Certificate Preview
+        function updatePreview() {
+            const data = templates[activeTemplate];
+
+            // Update badge text and style
+            const badge = document.getElementById('cert-badge-text');
+            badge.innerText = data.badgeText;
+            badge.className = `px-5 py-1.5 rounded-full text-xs font-bold tracking-[0.25em] uppercase shadow-sm border ${data.badgeClass}`;
+
+            // Main texts
+            document.getElementById('cert-title').innerText = data.title;
+            document.getElementById('cert-desc').innerText = data.desc;
+
+            // Recipient
+            const recipientName = document.getElementById('input-name').value;
+            document.getElementById('cert-recipient-name').innerText = recipientName.toUpperCase();
+
+            // Cohort Meta Details
+            const cohortVal = document.getElementById('input-batch').value;
+            document.getElementById('cert-period-date').innerText = cohortVal;
+
+            // Names & Titles for Boss 1 & Boss 2
+            const boss1Name = document.getElementById('input-boss1-name').value;
+            const boss1Title = document.getElementById('input-boss1-title').value;
+            const boss2Name = document.getElementById('input-boss2-name').value;
+            const boss2Title = document.getElementById('input-boss2-title').value;
+
+            document.getElementById('cert-dir-name').innerText = boss1Name;
+            document.getElementById('cert-dir-title').innerText = boss1Title;
+            document.getElementById('cert-assoc-name').innerText = boss2Name;
+            document.getElementById('cert-assoc-title').innerText = boss2Title;
+
+            // Hand-drawn Text Signatures Font Simulation (Fallback when not blank/uploaded)
+            document.getElementById('dir-sig-text').innerText = boss1Name;
+            document.getElementById('assoc-sig-text').innerText = boss2Name;
+        }
+
+        // Handle Image upload for custom signatures
+        function uploadSignature(event, target) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const textEl = document.getElementById(`${target}-sig-text`);
+                    const imgEl = document.getElementById(`${target}-sig-img`);
+                    const blankEl = document.getElementById(`${target}-blank-line`);
+
+                    textEl.classList.add('hidden');
+                    blankEl.classList.add('hidden');
+                    imgEl.src = e.target.result;
+                    imgEl.classList.remove('hidden');
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Initializer
+        window.onload = function () {
+            updatePreview();
+            toggleRealSign(); // Set to correct start state (Real ink by default)
+            changeBossFont(); // Set default selected premium font style
+        }
+    </script>
+</body>
+</html>
